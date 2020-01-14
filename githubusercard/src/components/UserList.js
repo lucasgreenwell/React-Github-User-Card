@@ -1,39 +1,39 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
-import UserCard from './UserCard'
+import UserCard from "./UserCard";
+import getRandomColor from "../tools/randomColor";
 
-class UserList extends React.Component{
-    constructor(){
-        super();
-        this.state = {
-            users: []
-        };
-    }
-    
-    componentDidMount() {
-        axios.get('https://api.github.com/users/lucasgreenwell/followers')
-        .then((res) => {
-            //  console.log(res)
-             this.setState({
-                 users: res.data
-             })
-             console.log(this.state.users)
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
+class UserList extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      users: []
+    };
+  }
 
-    render(){
-        return (
+  componentDidMount() {
+    axios
+      .get("https://api.github.com/users/lucasgreenwell/followers")
+      .then(res => {
+        //  console.log(res)
+        this.setState({
+          users: res.data
+        });
+        console.log(this.state.users);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
 
-            // <div>i exist</div>
-            this.state.users.map(user => {
-              return  <UserCard user={user}/>
-            })
-        )
-    }
-
+  render() {
+    return (
+      // <div>i exist</div>
+      this.state.users.map(user => {
+        return <UserCard color={getRandomColor()} user={user} />;
+      })
+    );
+  }
 }
-export default UserList
+export default UserList;
