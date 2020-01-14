@@ -4,7 +4,6 @@ import styled from 'styled-components';
 
 const CardContainer = styled.div`
     display: flex;
-    flex-flow: row wrap;
 `
 
 
@@ -30,6 +29,7 @@ const UserCard = props => {
     <h1>
         {props.user.login}
     </h1>
+<a href={props.user.html_url}>{props.user.html_url}</a>
     <Image src={props.user.avatar_url}/>
     </StyledCard>
 </CardContainer>
